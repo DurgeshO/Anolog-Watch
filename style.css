@@ -1,0 +1,112 @@
+/* STEP:-1 AGAR MUJHE ELEMENT KO DEFAULT KARNA HAI JISSE KOI EFFECT NAA PADE TO [UNIVERSAL SELECTOR] LENA HOTA HAI. */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+    color: white;
+}
+
+/* STEP:-2 */
+
+body{
+    display: flex;
+    justify-content: center;   /* for top centre */
+    align-items: center;
+    min-height: 100vh;   /* aisa karne par mujhe clock centre me milega. */
+    background-color:#212121;
+} 
+
+/* STEP:-3 */
+
+.container{
+    position: relative;     /* maine relative isliye kiya kyuki jab mai numbering ko styling karunga to uski position: absolute; karna padega. */
+
+}
+
+/* STEP:-4 */
+
+.clock{
+    width: 300px;         /*circle banane ke liye width liya */
+    height: 300px;        /*circle banane ke liye height liya */
+    border-radius: 50%;   /*circle banane ke liye border-radius liya */
+    background-color:rgba(255,255,255,0.1);        /*circle banane ke liye background-color: liya jisse circle ko color milega */
+    border: 2px solid rgba(255,255,255,0.25) ;      /* circle ko border diya rgba leker */
+    box-shadow: 0px 0px 30px rgba(0,0,0,0.9);       /* box ke outer side me shadow diya */
+
+    /* ab mujhe bich vale dot[.] ko kaise centre me layege vo karna hain.. */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* STEP:-5 ab mujhe apne clock ke span tag ko styling dena hai to kaise likhenge[.clock span]*/
+
+.clock span{
+    position: absolute;  /* [number ko edit karne ke liye..]*/
+
+    /*  position absolute karne par sab number ak saath aa gaye ab mujhe number ko rotate karana hai to mai kya use karunga */
+    /* maine 30deg kyu liya kyuki total circle[360] ka hota hai our hamara timing [12] ka hai to[360/12=30] uske baad [variable] lunga our usme [i] mention karunga..*/
+
+    transform: rotate(calc(30deg * var(--i)));
+
+  /*number ka ak circle banane ke liye humne inset liya  */
+    inset: 12px;
+
+    /*  fir circle ka goal to ban jayega lekin usko under kaise lenge us goal ke under uske liya [text-align] ka use karenge */
+    text-align: center; 
+
+}
+
+/* STEP:-6 ab mai clock ke under span ke under ke [b] tag ko styling karenge[.clock span b] ye likh kar  */
+
+.clock span b{
+    /* ab jo mera timing hai 1 to 12 usko straight karna hai jisme 12 pehle se hai lekin baki ke timing straight nahi hai to kya karenge[transform: rotate(calc(30deg * var(--i)));] aisa likhenge our uska [display block] karenge jisse baki ke straight ho jayenge */
+
+    transform: rotate(calc(-30deg * var(--i)));
+    display: block;
+
+    /* uska font size bada denge */
+    font-size: 20px;
+}
+
+/* STEP:-7 Ab main mere [hour,minute,second] ke hand ko set karunga. */
+
+/* ab mujhe clock ke centre me ak point dena hai uske liye mai kya karunga.. */
+
+.clock::before{
+
+   /* [minute,hour,second] ka hand banane ke liye */
+   content: '';
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    /* ak circle banane ke liye mai [border-radius: ;] lunga.. */
+    border-radius: 50%;
+    background-color: white;
+}
+
+/* STEP:-8 ab maine jo [step9] me edit kiya usse mujhe mere ghadi ka kata neeche ki taraf mila lekin mujhe 12a clock se start chahhiye to hum kya karenge */
+
+.hand{
+    position: absolute;
+    /* centre me lane ke liye [display: flex: ;]ka use karte hai  */
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+
+}
+/* STEP:-9 Ab main [hand means hour,minute,second] ko edit karunga jo maine [html ke step2 me liya hain] */
+
+.hand i{
+
+    /* kisi ko bhi edit karne se pehle uski position ko absolute karna padega  */
+    position: absolute;
+
+    /* mai background color me variables dalunga kyuki maine mere html me hand[hour,minute,second] ke liye alag-alag color decide kiya hai  */
+    background-color: var(--clr);
+    width: 4px;
+    height: 70px;
+    border-radius:8px;
+
+}
